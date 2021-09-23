@@ -34,7 +34,7 @@ ggsave("Plot1.png", width = 15, height = 5)
 
 #group and summarize continent and year and save as grouping
 gapminder_continent <- gapminder %>%
-  group_by(continent, year) %>%
+ group_by(continent, year) %>%
   summarize(gdpPercapweighted= weighted.mean(x=gdpPercap, w=pop), pop=sum(as.numeric(pop))) 
  
 
@@ -43,8 +43,8 @@ data(gapminder)
 ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/100000)) +
   geom_line(aes(group=country, size = .1)) + 
   geom_point() +
-  geom_line(data=gapminder_continent, mapping=aes(x=year, y=gdpPercapweighted, color= "black", size=.5))+
-  geom_point(data=gapminder_continent,mapping=aes(x=year, y=gdpPercapweighted, color="black"))+
+  geom_line(data=gapminder_continent, mapping=aes(x=year, y=gdpPercapweighted, size=.5))+
+  geom_point(data=gapminder_continent,mapping=aes(x=year, y=gdpPercapweighted))+
   facet_wrap(~continent,nrow=1) + 
   theme_bw() + 
   labs( x="Year", y = "GDP per Capita", size =" Population (100k)")
@@ -52,7 +52,7 @@ ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/100000))
 #p2
 
 #save it
-#ggsave("Plot2.png", width = 15, height = 5)
+ggsave("Plot2.png", width = 15, height = 5)
  
 
 
