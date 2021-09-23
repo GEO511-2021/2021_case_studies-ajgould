@@ -39,23 +39,13 @@ gapminder
 p2 <- ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/100000)) +
   geom_line(aes(group=country, size = .1)) + 
   geom_point() +
-  geom_line(gapminder_continent, mapping=aes(x=year, y=gdpPercapweighted, color= "black", size=.5))+
-  geom_point(gapminder_continent,mapping=aes(x=year, y=gdpPercapweighted, color="black"))+
+  geom_line(data=gapminder_continent, mapping=aes(x=year, y=gdpPercapweighted, color= "black", size=.5))+
+  geom_point(data=gapminder_continent,mapping=aes(x=year, y=gdpPercapweighted, color="black"))+
   facet_wrap(~continent,nrow=1) + 
   theme_bw() + 
   labs( x="Year", y = "GDP per Capita", size =" Population (100k)")
 
-#p2
-
-#Joe's... still saying cant find pop or country 
-# ggplot(gapminder, aes(x = year, y = gdpPercap))+
- # geom_line(aes(color=continent, group=country))+
- # geom_point(aes(color=continent))+
- # geom_line(gapminder_continent, mapping = aes(year, gdpPercapweighted))+
-  #geom_point(gapminder_continent, mapping = aes(year, gdpPercapweighted, size = pop))+
- # theme_bw()+
- # facet_wrap(~continent,nrow=1)+
-  #labs(x = "Year", y = "GDP per Capita")
+p2
 
 
 
