@@ -29,7 +29,6 @@ p1
 #save it
 ggsave("Plot1.png", width = 15, height = 5)
 
-
 #get ready for the second plot
 
 #group and summarize continent and year and save as grouping
