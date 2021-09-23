@@ -40,7 +40,7 @@ gapminder_continent <- gapminder %>%
 
 #plot it
 data(gapminder)
-p2 <- ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/100000)) +
+ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/100000)) +
   geom_line(aes(group=country, size = .1)) + 
   geom_point() +
   geom_line(data=gapminder_continent, mapping=aes(x=year, y=gdpPercapweighted, color= "black", size=.5))+
@@ -49,10 +49,10 @@ p2 <- ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/10
   theme_bw() + 
   labs( x="Year", y = "GDP per Capita", size =" Population (100k)")
 
-p2
+#p2
 
 #save it
-ggsave("Plot2.png", width = 15, height = 5)
+#ggsave("Plot2.png", width = 15, height = 5)
  
 
 
