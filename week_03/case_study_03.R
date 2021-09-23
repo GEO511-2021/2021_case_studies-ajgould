@@ -26,16 +26,20 @@ p1 <- ggplot(No_Kuwait, aes(x = lifeExp, y =gdpPercap, color = continent, size =
 
 p1   
 
+#save it
+ggsave("Plot1.png", width = 15, height = 5)
+
+
 #get ready for the second plot
 
 #group and summarize continent and year and save as grouping
 gapminder_continent <- gapminder %>%
   group_by(continent, year) %>%
-  summarize(gdpPercapweighted= weighted.mean(x=gdpPercap, w=pop, pop=sum(as.numeric(pop)))) 
+  summarize(gdpPercapweighted= weighted.mean(x=gdpPercap, w=pop), pop=sum(as.numeric(pop))) 
  
 
 #plot it
-gapminder 
+data(gapminder)
 p2 <- ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/100000)) +
   geom_line(aes(group=country, size = .1)) + 
   geom_point() +
@@ -47,8 +51,8 @@ p2 <- ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/10
 
 p2
 
-
-
+#save it
+ggsave("Plot2.png", width = 15, height = 5)
  
 
 
