@@ -6,12 +6,12 @@ output: github_document
 ---
 
 # Load pacakges 
-library(tidyverse)
-library(dplyr)
 library(raster)
 library(sp)
-library(sf)
 library(spData)
+library(tidyverse)
+library(sf)
+library(dplyr)
 
 
 # Download world monthly climate data
@@ -54,6 +54,7 @@ ggplot(tmax_country) +
   scale_fill_viridis_c(name="Annual\nMaximum\nTemperature (C)") +
   theme(legend.position = 'bottom')
 
+
 # Find the hottest countries in each continent
 hottest_continents <- tmax_country %>%
   group_by(continent) %>%
@@ -64,5 +65,7 @@ hottest_continents <- tmax_country %>%
 
 # View Table 
 hottest_continents
+
+
 
 
