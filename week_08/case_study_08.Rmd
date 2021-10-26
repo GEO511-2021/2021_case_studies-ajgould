@@ -11,6 +11,7 @@ output:
 ```{r}
 
 library(tidyverse)
+library(kableExtra)
 
 URL <- "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt"
 Data <- read_table(URL, skip = 57, col_names =c("year", "mean", "unc"))
@@ -24,7 +25,11 @@ ggplot(data=Data, mapping=aes(x=year, y=mean))+
 ```{r}
 Top5 <- Data %>%
   arrange(desc(mean)) %>%
-  top_n(mean, n=5)
+  top_n(mean, n=5) %>%
+  kable() %>%
+  as_image(width = 20,file = "table.png")
+
+Top5
 
 knitr::kable(Top5)
 
