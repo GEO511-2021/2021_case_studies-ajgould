@@ -1,22 +1,25 @@
----
-title: "Case Study 04"
-author: Your Name
-date: August 1, 2020
-output: github_document
----
+#---
+#title: "Case Study 04"
+#author: Alex Gould
+#date: September 27, 2021
+#output: github_document
+#---
 
-## First Header
+#load packages 
+library(tidyverse)
+library(nycflights13)
 
-Comments
 
-```{r}
-summary(cars)
-```
+#Comments
+
+#```{r}
+#summary(cars)
+#```
 
 ## Second Header
 
-Comments
+#Comments
 
-```{r}
-plot(pressure)
-```
+#```{r}
+#plot(pressure)
+#```

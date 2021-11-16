@@ -1,7 +1,71 @@
 ---
 title: "Case Study 06"
-author: Your Name
-date: August 1, 2020
+author: Alex Gould
+date: October 12, 2021
 output: github_document
 ---
- 
+
+# Load pacakges 
+library(raster)
+library(sp)
+library(spData)
+library(tidyverse)
+library(sf)
+library(dplyr)
+
+
+# Download world monthly climate data
+data(world)
+
+# Remove Antarctica
+world_new <- filter(world, continent != "Antarctica")
+
+# Covert to Sp
+world_sp <- as(world_new, "Spatial")
+
+
+# Add climate data
+tmax_monthly <- getData(name = "worldclim", var="tmax", res=10)
+
+# View 
+tmax_monthly
+
+# Plot it
+plot(tmax_monthly)
+
+# Convert to Celsius
+gain(tmax_monthly) <- .1
+
+# Annual maximum temperature in each pixel of the raster
+tmax_annual <- max(tmax_monthly)
+
+# Change the name of the layer from tmax annual  to tmax
+names(tmax_annual) <- "tmax"
+
+# Calculate maximum temperature observed in each country
+max_temp <-raster::extract(tmax_annual, world_sp, fun=max, na.rm=T, small=T, sp=T)
+
+# Save the spatial feature as tmax_country 
+tmax_country <- st_as_sf(max_temp)
+
+# Plot it!
+ggplot(tmax_country) +
+  geom_sf(aes(fill=tmax)) +
+  scale_fill_viridis_c(name="Annual\nMaximum\nTemperature (C)") +
+  theme(legend.position = 'bottom')
+
+
+# Find the hottest countries in each continent
+hottest_continents <- tmax_country %>%
+  group_by(continent) %>%
+  top_n(1, tmax) %>%
+  select(name_long, continent, tmax) %>%
+  arrange(desc(tmax)) %>%
+  st_set_geometry(NULL)
+
+# View Table 
+hottest_continents
+
+
+
+

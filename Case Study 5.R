@@ -1,16 +1,8 @@
----
-title: "Case Study 05"
-author: Alex Gould
-date: October 5, 2021
-output: github_document
----
 
   #loadpackages 
 library(spData)
 library(sf)
 library(tidyverse)
-library(units)
-library(dplyr)
 
 # library(units) #this one is optional, but can help with unit conversions.
 
@@ -53,6 +45,4 @@ tm_shape(NY) +
   tm_polygons(col = "green")
 
 #find area 
-area <- st_area(Border_Object) %>%
-  set_units(km^2) 
   
